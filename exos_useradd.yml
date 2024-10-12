@@ -1,0 +1,13 @@
+---
+- name: Create user on exos switch
+  hosts: exos_group
+  gather_facts: no
+  tasks:
+    - name: Create new user
+      ansible.netcommon.cli_command:
+              command: create account admin Local-Admin WGU123       
+      register: command_output
+
+    - name: Show command output
+      debug:
+        var: command_output.stdout_lines
